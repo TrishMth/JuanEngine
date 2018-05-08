@@ -1,0 +1,2 @@
+LIBRARY "RenderingLib.dll"
+EXPORTS CreateGraphics
