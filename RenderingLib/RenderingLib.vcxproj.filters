@@ -18,15 +18,19 @@
     <ClInclude Include="include\DX11.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="include\Texture.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\D2Test.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DX11.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RenderingLib.def">
+    <ClCompile Include="src\D2Test.cpp">
       <Filter>Quelldateien</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,14 +23,14 @@ void Rendering::DX11::Run()
 	m_pSwapChain->Present(0, 0);
 }
 
-JE::Mainframework::IGraphics * Rendering::DX11::CreateGraphics(const HINSTANCE& hInstance)
-{
-	static IGraphics* pDX11 = new DX11(hInstance);
-	return pDX11;
-}
+//JE::Mainframework::IGraphics * Rendering::DX11::CreateGraphics(const HINSTANCE& hInstance)
+//{
+//	static IGraphics* pDX11 = new DX11(hInstance);
+//	return pDX11;
+//}
 
 Rendering::DX11::DX11(const HINSTANCE & hInstance)
-	:IGraphics(hInstance), m_pBackBuffer(nullptr), m_pDevice(nullptr), m_pDeviceCon(nullptr), m_pSwapChain(nullptr), m_pVertexShader(nullptr), m_pInputLayout(nullptr)
+	: m_pBackBuffer(nullptr), m_pDevice(nullptr), m_pDeviceCon(nullptr), m_pSwapChain(nullptr), m_pVertexShader(nullptr), m_pInputLayout(nullptr)
 {
 
 }

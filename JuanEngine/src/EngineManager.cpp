@@ -32,15 +32,21 @@ void JE::Mainframework::EngineManager::Init()
 
 void JE::Mainframework::EngineManager::Run()
 {
-	HMODULE graphicsMod = LoadLibrary("RenderingLib\\RenderingLib.dll");
-	CREATE_GRAPHICS createGraphics = (CREATE_GRAPHICS)GetProcAddress(graphicsMod, "CreateGraphics");
-	m_pGraphics = createGraphics(m_hInstance);
-	m_pGraphics->Init(m_MainWndHandle);
+	//HMODULE graphicsMod = LoadLibrary("RenderingLib\\RenderingLib.dll");
+	//CREATE_GRAPHICS createGraphics = (CREATE_GRAPHICS)GetProcAddress(graphicsMod, "CreateGraphics");
+	//m_pGraphics = createGraphics(m_hInstance);
+	//m_pGraphics->Init(m_MainWndHandle);
+
+	Rendering::D2Test* fuckyou = new Rendering::D2Test();
+
+
 	MSG msg{ 0 };
+
 	while (msg.message != WM_QUIT)
-	{		
-		Window::Run(m_MainWndHandle, msg);			
-		m_pGraphics->Run();		
+	{
+		Window::Run(m_MainWndHandle, msg);
+		fuckyou->DoSomething(m_MainWndHandle);
+		//m_pGraphics->Run();		
 	}
 }
 

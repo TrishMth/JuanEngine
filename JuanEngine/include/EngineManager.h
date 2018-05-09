@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include "IGraphics.h"
 #include "Window.h"
+#include "D2Test.h"
+
 namespace JE
 {
 	namespace Mainframework

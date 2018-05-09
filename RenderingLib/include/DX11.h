@@ -5,14 +5,14 @@
 
 namespace Rendering {
 
-		class DX11 : public JE::Mainframework::IGraphics
+		class __declspec(dllexport) DX11
 		{
 		public:
 			bool Init(const HWND& hWnd);
 			void Run();
-			IGraphics* CreateGraphics(const HINSTANCE& hInstance);
+			//IGraphics* CreateGraphics(const HINSTANCE& hInstance);
 			DX11(const HINSTANCE& hInstance);
-			virtual ~DX11();
+			~DX11();
 		
 
 		private:
