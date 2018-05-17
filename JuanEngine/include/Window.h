@@ -1,4 +1,6 @@
 #include <Windows.h>
+#include <windowsx.h>
+#include "WindowHandler.h"
 
 namespace JE {
 
@@ -6,10 +8,13 @@ namespace JE {
 
 		class Window {
 		public:
-			static HWND WindowInitialize(const HINSTANCE hInstance);
-			static void Run(const HWND& hWnd, MSG& msg);
+			Window(); 
+			HWND WindowInitialize(const HINSTANCE hInstance);
+			void Run(const HWND& hWnd, MSG& msg);
+			LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 		private:
+			Rendering::WindowHandler* m_pWndHandler;
 		};
 	}
 }

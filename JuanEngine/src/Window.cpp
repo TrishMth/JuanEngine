@@ -1,26 +1,28 @@
 #include "..\\include\Window.h"
+#include "WindowHandler.h"
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+namespace
 {
-	switch (msg)
-	{
-	case WM_CLOSE:
-		//TODO POPUP before destroy
-		DestroyWindow(hWnd);
-		return 0;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		return 0;
-	}
+	JE::Mainframework::Window* g_pWnd = nullptr;
+}
 
-	return DefWindowProc(hWnd, msg, wParam, lParam);
+LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	return g_pWnd->WndProc(hWnd, msg, wParam, lParam);
+}
+
+JE::Mainframework::Window::Window()
+{
+	g_pWnd = this;
 }
 
 HWND JE::Mainframework::Window::WindowInitialize(HINSTANCE hInstance)
 {
+	m_pWndHandler = new Rendering::WindowHandler();
+
 	WNDCLASS wndClass{ 0 };
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
-	wndClass.lpfnWndProc = WndProc;
+	wndClass.lpfnWndProc = MainWndProc;
 	wndClass.hInstance = hInstance;
 	wndClass.hbrBackground = (HBRUSH)COLOR_WINDOW;
 	wndClass.lpszClassName = "HurensohnClass";
@@ -46,6 +48,25 @@ void JE::Mainframework::Window::Run(const HWND & hWnd, MSG& msg)
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);		
 	}
+}
+
+LRESULT JE::Mainframework::Window::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+	case WM_CLOSE:
+		//TODO POPUP before destroy
+		DestroyWindow(hWnd);
+		return 0;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	case WM_LBUTTONUP:
+		m_pWndHandler->CheckIfInsideWindow(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+		return 0;
+	}
+
+	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
 

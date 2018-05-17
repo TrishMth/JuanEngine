@@ -21,13 +21,16 @@ void Rendering::D2Test::DoSomething(const HWND& hWnd)
 
 	RECT rect;
 	GetClientRect(hWnd, &rect);
-
+	
+	WindowHandler* wndHandler = new WindowHandler();
+	WindowTransform wndTrans = wndHandler->GetWindow()->GetTransform();
+	
 	m_pD2DFactory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(),
 		D2D1::HwndRenderTargetProperties(
 			hWnd,
 			D2D1::SizeU(
 				rect.right - rect.left,
-				rect.bottom - rect.top)
+				rect.bottom- rect.top)
 		),
 		&m_pRenderTarget);
 	if (!m_pRenderTarget)
@@ -43,12 +46,12 @@ void Rendering::D2Test::DoSomething(const HWND& hWnd)
 
 	m_pRenderTarget->BeginDraw();
 
-	m_pRenderTarget->DrawRectangle(
+	m_pRenderTarget->FillRectangle(
 		D2D1::RectF(
-			rect.left + 100.f,
-			rect.top + 100.f,
-			rect.right - 100.f,
-			rect.bottom - 100.f),
+		   wndTrans.X,
+		wndTrans.Y,
+			wndTrans.X + wndTrans.Width,
+			wndTrans.Y + wndTrans.Height),
 		pBlackBrush
 	);
 

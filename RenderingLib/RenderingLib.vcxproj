@@ -142,13 +142,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\BaseWindow.h" />
     <ClInclude Include="include\D2Test.h" />
     <ClInclude Include="include\DX11.h" />
-    <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\GlobalStructs.h" />
+    <ClInclude Include="include\WindowHandler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BaseWindow.cpp" />
     <ClCompile Include="src\D2Test.cpp" />
     <ClCompile Include="src\DX11.cpp" />
+    <ClCompile Include="src\WindowHandler.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

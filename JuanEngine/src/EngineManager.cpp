@@ -26,7 +26,8 @@ void JE::Mainframework::EngineManager::ReleaseInstance()
 
 void JE::Mainframework::EngineManager::Init()
 {
-	m_MainWndHandle = Window::WindowInitialize(m_hInstance);
+	m_pWindow = new Window();
+	m_MainWndHandle = m_pWindow->WindowInitialize(m_hInstance);
 
 }
 
@@ -44,7 +45,7 @@ void JE::Mainframework::EngineManager::Run()
 
 	while (msg.message != WM_QUIT)
 	{
-		Window::Run(m_MainWndHandle, msg);
+		m_pWindow->Run(m_MainWndHandle, msg);
 		fuckyou->DoSomething(m_MainWndHandle);
 		//m_pGraphics->Run();		
 	}

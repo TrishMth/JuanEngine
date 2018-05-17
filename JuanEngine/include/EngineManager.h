@@ -16,6 +16,7 @@ namespace JE
 			IGraphics* m_pGraphics;
 			HWND m_MainWndHandle;
 			HINSTANCE m_hInstance;
+			Window* m_pWindow;
 		public:
 			static void CreateInstance(const HINSTANCE& hInstance);
 			static EngineManager& GetInstance();

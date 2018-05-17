@@ -2,6 +2,7 @@
 
 #include "DX11.h"
 #include <d2d1.h>
+#include "WindowHandler.h" 
 
 namespace Rendering {
 
