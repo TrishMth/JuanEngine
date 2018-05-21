@@ -1,5 +1,6 @@
 #include "..\\include\Window.h"
 #include "WindowHandler.h"
+#include "D2D1Rendering.h"
 
 namespace
 {
@@ -12,13 +13,15 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 JE::Mainframework::Window::Window()
+	: m_pWndHandler(nullptr)
 {
 	g_pWnd = this;
 }
 
 HWND JE::Mainframework::Window::WindowInitialize(HINSTANCE hInstance)
 {
-	m_pWndHandler = new Rendering::WindowHandler();
+	m_pDTest = new Rendering::D2D1Rendering;
+	m_pWndHandler = m_pDTest->m_pWndHandler;
 
 	WNDCLASS wndClass{ 0 };
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -40,13 +43,12 @@ HWND JE::Mainframework::Window::WindowInitialize(HINSTANCE hInstance)
 
 void JE::Mainframework::Window::Run(const HWND & hWnd, MSG& msg)
 {
+	//TODO error message;
 
-		//TODO error message;
-
-	if (PeekMessage(&msg,NULL, NULL, NULL,PM_REMOVE))
+	if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
 	{
 		TranslateMessage(&msg);
-		DispatchMessage(&msg);		
+		DispatchMessage(&msg);
 	}
 }
 
@@ -64,6 +66,14 @@ LRESULT JE::Mainframework::Window::WndProc(HWND hWnd, UINT msg, WPARAM wParam, L
 	case WM_LBUTTONUP:
 		m_pWndHandler->CheckIfInsideWindow(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		return 0;
+	case WM_KEYDOWN:
+		switch (wParam)
+		{
+		case VK_LEFT: {
+			m_pWndHandler->NewWindow(100, 200, 50, 150);
+			break;
+		};
+		}
 	}
 
 	return DefWindowProc(hWnd, msg, wParam, lParam);

@@ -1,4 +1,5 @@
 #include "..\include\EngineManager.h"
+#include "GlobalStructs.h"
 JE::Mainframework::EngineManager* JE::Mainframework::EngineManager::s_pEngineManager = nullptr;
 
 void JE::Mainframework::EngineManager::CreateInstance(const HINSTANCE& hInstance)
@@ -28,27 +29,29 @@ void JE::Mainframework::EngineManager::Init()
 {
 	m_pWindow = new Window();
 	m_MainWndHandle = m_pWindow->WindowInitialize(m_hInstance);
+	m_pD2Rendering = new Rendering::D2D1Rendering();
+	m_pD2Rendering->CreateRenderTarget(m_MainWndHandle);
+	m_pD2Rendering->CreateBrush(D2D1::ColorF::HotPink);
+
+	Rendering::WindowHandler* wndHandler = new Rendering::WindowHandler();
+
+	wndHandler->NewWindow(20, 20, 200, 200);
+
+	m_pD2Rendering->RenderWindow(wndHandler);
 
 }
 
 void JE::Mainframework::EngineManager::Run()
 {
-	//HMODULE graphicsMod = LoadLibrary("RenderingLib\\RenderingLib.dll");
-	//CREATE_GRAPHICS createGraphics = (CREATE_GRAPHICS)GetProcAddress(graphicsMod, "CreateGraphics");
-	//m_pGraphics = createGraphics(m_hInstance);
-	//m_pGraphics->Init(m_MainWndHandle);
-
-	Rendering::D2Test* fuckyou = new Rendering::D2Test();
-
 
 	MSG msg{ 0 };
 
 	while (msg.message != WM_QUIT)
 	{
 		m_pWindow->Run(m_MainWndHandle, msg);
-		fuckyou->DoSomething(m_MainWndHandle);
-		//m_pGraphics->Run();		
 	}
+	
+
 }
 
 bool JE::Mainframework::EngineManager::IsInstantiated()

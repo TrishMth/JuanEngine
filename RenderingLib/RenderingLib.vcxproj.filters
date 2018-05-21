@@ -18,9 +18,6 @@
     <ClInclude Include="include\DX11.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="include\D2Test.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="include\WindowHandler.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -30,18 +27,21 @@
     <ClInclude Include="include\GlobalStructs.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="include\D2D1Rendering.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DX11.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\D2Test.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\BaseWindow.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\WindowHandler.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\D2D1Rendering.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
